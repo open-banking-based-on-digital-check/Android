@@ -25,7 +25,7 @@ import static java.lang.String.valueOf;
 
 public class AccountListActivity extends AppCompatActivity {
 
-    public static String SERVER_ADRESS = "http://141.223.83.30:8080";
+    public static String SERVER_ADRESS = "http://141.223.83.40:8080";
 
     String[] bank_array = new String[30];
     String[] account_array = new String[30];
@@ -38,7 +38,7 @@ public class AccountListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountlist);
 
-        accountNumber = (EditText) findViewById(R.id.accountNumber);
+        accountNumber = (EditText) findViewById(R.id.accountNumberForList);
         bankName = (EditText) findViewById(R.id.bankName);
         addAccount = (Button) findViewById(R.id.btnAddAcount);
         Tr = (TableRow)findViewById(R.id.tablerow1);
@@ -50,8 +50,8 @@ public class AccountListActivity extends AppCompatActivity {
         final Realm realm = Realm.getDefaultInstance();
 
         EndorsementDB endorsementDB = realm.where(EndorsementDB.class).equalTo("userId", userId).findFirst();
-        Call<BankAccount> m = RetrofitServiceImplFactory.serverPost().queryMyAccounts(userId);
-        Call<BankAccount> m2 = RetrofitServiceImplFactory.serverPost().getBank(userId);
+        Call<BankAccount> m = MainActivity.RetrofitServiceImplFactory.serverPost().getBankInfo(userId);
+        //Call<BankAccount> m = MainActivity.RetrofitServiceImplFactory.serverPost().queryMyAccounts(userId);
 
 
         m.enqueue(new Callback<BankAccount>() {
@@ -60,8 +60,12 @@ public class AccountListActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Log.d("query my account", "success");
                     final BankAccount body = response.body();
-                    accountNumber.setText(valueOf(body.getAccountNumber()));
-                    Toast.makeText(getApplicationContext(), "서버에 값을 전달했습니다 : ", Toast.LENGTH_SHORT).show();
+                    if(body.getBank() != null)
+                        bankName.setText(body.getBank());
+                    if(body.getAccountNumber() != null)
+                        accountNumber.setText(valueOf(body.getAccountNumber()));
+
+                    Toast.makeText(getApplicationContext(), "계좌 리스트 ", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -71,9 +75,10 @@ public class AccountListActivity extends AppCompatActivity {
             }
         });
 
+        /*
         m2.enqueue(new Callback<BankAccount>() {
             @Override
-            public void onResponse(Call<BankAccount> call, Response<BankAccount> response) {
+            public void onResponse(Call<B ankAccount> call, Response<BankAccount> response) {
                 if(response.isSuccessful()) {
                     Log.d("query my bank", "success");
                     final BankAccount body = response.body();
@@ -88,6 +93,7 @@ public class AccountListActivity extends AppCompatActivity {
             }
         });
 
+         */
         Tr.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -97,6 +103,17 @@ public class AccountListActivity extends AppCompatActivity {
 
         });
 
+        addAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent issueuIntetent = new Intent(AccountListActivity.this, AddAccountActivity.class);
+                //final Intent mainIntetent = new Intent(LoginActivity.this, MainActivity.class);
+
+                issueuIntetent.putExtra("userId", userId);
+                AccountListActivity.this.startActivity(issueuIntetent);
+                setContentView(R.layout.activity_addaccount);
+            }
+        });
     }
 
     public interface ServerPost {

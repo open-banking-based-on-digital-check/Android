@@ -22,6 +22,13 @@
 
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".IssueActivity"></activity>
+        <activity android:name=".AccountBalanceActivity"></activity>
+        <activity android:name=".AccountListActivity"></activity>
+        <activity android:name=".SendActivity"></activity>
+        <activity android:name=".RedeemActivity"></activity>
+        <activity android:name=".AddAccountActivity"></activity>
         <activity android:name=".RegisterActivity" />
     </application>
 

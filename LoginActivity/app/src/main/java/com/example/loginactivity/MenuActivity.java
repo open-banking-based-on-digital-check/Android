@@ -30,8 +30,9 @@ public class MenuActivity extends AppCompatActivity{
                 //final Intent mainIntetent = new Intent(LoginActivity.this, MainActivity.class);
 
                 accountbalanceIntetent.putExtra("userId", userId);
-                MenuActivity.this.startActivity(accountbalanceIntetent);
-                setContentView(R.layout.activity_account_balance);
+                //setContentView(R.layout.activity_account_balance);
+                startActivity(accountbalanceIntetent);
+
             }
         });
 
@@ -42,20 +43,22 @@ public class MenuActivity extends AppCompatActivity{
                 //final Intent mainIntetent = new Intent(LoginActivity.this, MainActivity.class);
 
                 issueuIntetent.putExtra("userId", userId);
-                MenuActivity.this.startActivity(issueuIntetent);
-                setContentView(R.layout.activity_issue);
+                //setContentView(R.layout.activity_issue);
+                startActivity(issueuIntetent);
+
             }
         });
 
         AccountListPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent accountlistIntetent = new Intent(MenuActivity.this, AccountBalanceActivity.class);
+                final Intent accountlistIntetent = new Intent(MenuActivity.this, AccountListActivity.class);
                 //final Intent mainIntetent = new Intent(LoginActivity.this, MainActivity.class);
 
                 accountlistIntetent.putExtra("userId", userId);
-                MenuActivity.this.startActivity(accountlistIntetent);
-                setContentView(R.layout.activity_accountlist);
+                //setContentView(R.layout.activity_accountlist);
+                startActivity(accountlistIntetent);
+
             }
         });
 

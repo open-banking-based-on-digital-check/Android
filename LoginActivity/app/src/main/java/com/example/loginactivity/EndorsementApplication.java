@@ -1,11 +1,9 @@
 package com.example.loginactivity;
 
 import android.app.Application;
-import android.os.Bundle;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 public class EndorsementApplication extends Application {
 
@@ -42,13 +40,13 @@ public class EndorsementApplication extends Application {
 
         Realm.setDefaultConfiguration(config);
         Realm realm = Realm.getDefaultInstance();
-        final EndorsementDB endorsementDB = new EndorsementDB(userId, data.getStrEnrollment());
+        final EndorsementDB EndorsementDB = new EndorsementDB(userId, data.getStrEnrollment());
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 //Realm에 생성한 다이어리를 저장하는 코드
-                realm.copyToRealm(endorsementDB);
+                realm.copyToRealm(EndorsementDB);
             }
         });
     }
@@ -57,8 +55,8 @@ public class EndorsementApplication extends Application {
 
         //앱에 설치된 Realm파일을 찾아서 가져오는 코드
         Realm realm = Realm.getDefaultInstance();
-        EndorsementDB endorsementDB = realm.where(EndorsementDB.class).equalTo("userId", userId).findFirst();
+        EndorsementDB EndorsementDB = realm.where(EndorsementDB.class).equalTo("userId", userId).findFirst();
 
-        return endorsementDB;
+        return EndorsementDB;
     }
 }

@@ -25,7 +25,7 @@ import static java.lang.String.valueOf;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String SERVER_ADRESS = "http://141.223.83.30:8080";
+    public static String SERVER_ADRESS = "http://141.223.83.37:8080";
 
     EditText userIdText;
     EditText myCash;
@@ -296,9 +296,36 @@ public class MainActivity extends AppCompatActivity {
         Call<ResponseBody> createToken(@Field("userId") String userId, @Field("enrollment") String enrollment, @Field("bank") String bank, @Field("accountNumber") String accountNumber, @Field("amounts") String amounts);
 
         @FormUrlEncoded
-        @POST("/assets/send")
-        Call<BankAccount> send(@Field("userId") String userId, @Field("receiver") String receiver, @Field("amounts") String amounts, @Field("enrollment") String enrollment);
+        @POST("/assets/redeem")
+        Call<ResponseBody> redeemToken(@Field("userId") String userId, @Field("enrollment") String enrollment, @Field("bank") String bank, @Field("accountNumber") String accountNumber, @Field("amounts") String amounts);
 
+        @FormUrlEncoded
+        @POST("/assets/send")
+        Call<ResponseBody> send(@Field("userId") String userId, @Field("receiver") String receiver, @Field("amounts") String amounts, @Field("enrollment") String enrollment);
+
+        @FormUrlEncoded
+        @POST("/assets/oauth/token")
+        Call<ResponseBody> login(@Field("userId") String userId, @Field("userPasswd") String userPasswd);
+
+        @FormUrlEncoded
+        @POST("/assets/signUp")
+        Call<Data> register(@Field("userId") String userId, @Field("userPasswd") String userPasswd);
+
+        @FormUrlEncoded
+        @POST("/assets/queryMyAccounts")
+        Call<BankAccount> queryMyAccounts(@Field("userId") String userId);
+
+        @FormUrlEncoded
+        @POST("/assets/queryMyBank")
+        Call<BankAccount> getBank(@Field("userId") String userId);
+
+        @FormUrlEncoded
+        @POST("/assets/getBankInfo")
+        Call<BankAccount> getBankInfo(@Field("userId") String userId);
+
+        @FormUrlEncoded
+        @POST("/assets/addAccount")
+        Call<ResponseBody> addAccount(@Field("userId") String userId, @Field("bank") String bank, @Field("accountNumber") String accountNumber);
     }
 
     static class RetrofitServiceImplFactory {

@@ -23,7 +23,7 @@ import static java.lang.String.valueOf;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public static String SERVER_ADRESS = "http://141.223.83.30:8080";
+    public static String SERVER_ADRESS = "http://141.223.83.40:8080";
     EditText idText;
     EditText passwordText;
 
@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         idText = (EditText) findViewById(R.id.idText);
         passwordText = (EditText) findViewById(R.id.passwordText);
         TextView registerButton = (TextView) findViewById(R.id.createDigitalCheck);
+        System.out.println(" start >>>>>>>>>> " );
 
         registerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -48,13 +49,14 @@ public class RegisterActivity extends AppCompatActivity {
                 final String userId = idText.getText().toString();
                 final String userPasswd = passwordText.getText().toString();
 
-                Call<Data> m = RegisterActivity.RetrofitServiceImplFactory.serverPost().sendName(userId, userPasswd);
+                Call<Data> m = MainActivity.RetrofitServiceImplFactory.serverPost().register(userId, userPasswd);
 
                 m.enqueue(new Callback<Data>() {
 
                     @Override
                     public void onResponse(Call<Data> call, Response<Data> response) {
 
+                        System.out.println(" start >>>>>>>>>> " );
                         if(response.isSuccessful()) {
                             final Data body = response.body();
                             //EndorsementApplication endorsementApplication = new EndorsementApplication();
@@ -76,11 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                             EndorsementDB endorsementDB = realm.where(EndorsementDB.class).equalTo("userId", userId).findFirst();
                             System.out.println(" >> " + endorsementDB.getStrEndorsement());
-                            Toast.makeText(getApplicationContext(), "서버에 값을 전달했습니다 : ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "회원가입 성공 ", Toast.LENGTH_SHORT).show();
                         }
 
+                        //setContentView(R.layout.activity_login);
                         RegisterActivity.this.startActivity(mainIntetent);
-                        setContentView(R.layout.activity_login);
                     }
 
                     @Override

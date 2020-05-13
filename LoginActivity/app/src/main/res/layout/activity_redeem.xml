@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RedeemActivity">
+
+    <LinearLayout android:id="@+id/llSubTitle" style="@style/SubTitleLayout">
+
+        <TextView
+            android:id="@+id/tvSubTitle"
+            style="@style/SubTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="환 전\n- 디지털 수표를 현금으로 환전하기 위해 계좌번호로 전송" />
+    </LinearLayout>
+
+<!--    <TableLayout-->
+<!--        android:id="@+id/tableLayout1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="30dp">-->
+
+<!--    <TableRow-->
+<!--        android:id="@+id/tablerow1"-->
+<!--        android:padding="5dip">-->
+
+<!--        <LinearLayout-->
+<!--            style="@style/FormValue02">-->
+
+<!--        -->
+<!--&lt;!&ndash;            <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/bankName"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/FormValue02"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="70dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:inputType="text"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="은행선택 " />&ndash;&gt;-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/accountNumberForRedeem"-->
+<!--                style="@style/FormValue02"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:hint="계좌번호 입력"-->
+<!--                android:inputType="text"-->
+<!--                android:maxLines="1"-->
+<!--                android:text="" />-->
+<!--        </LinearLayout>-->
+<!--    </TableRow>-->
+<!--    </TableLayout>-->
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <Spinner
+            android:id="@+id/bankNameForRedeem"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:entries="@array/Bank"
+            android:background="@drawable/spinner_background"
+            android:spinnerMode="dropdown" />
+
+        <TableRow
+            android:id="@+id/tablerow1"
+            android:padding="20dip"
+            android:layout_height="100dp">
+
+            <LinearLayout
+                style="@style/FormValue02">
+                <EditText
+                    android:id="@+id/accountNumberForRedeem"
+                    style="@style/FormValue02"
+                    android:layout_width="100dp"
+                    android:hint="계좌번호 입력"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/balanceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="25dp"
+        android:ems="10"
+        android:hint="보낼금액(원)"
+        android:inputType="textPersonName" />
+
+
+    <LinearLayout
+        android:id="@+id/lllSubTitle"
+        style="@style/SubTitleLayout"
+        android:layout_height="545dp">
+
+        <Button
+            android:id="@+id/btnRedeem"
+            style="@style/Button01"
+            android:layout_width="335dp"
+            android:layout_height="51dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnsave"
+            android:text="보내기"
+            android:textSize="20sp"
+            android:textStyle="bold"></Button>
+    </LinearLayout>
+</LinearLayout>
+
+

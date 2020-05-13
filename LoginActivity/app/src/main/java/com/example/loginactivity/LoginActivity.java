@@ -23,7 +23,7 @@ import retrofit2.http.POST;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static String SERVER_ADRESS = "http://141.223.83.30:8080";
+    public static String SERVER_ADRESS = "http://141.223.83.40:8080";
     EditText idText;
     EditText passwordText;
 
@@ -41,13 +41,13 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                final Intent mainIntetent = new Intent(LoginActivity.this, MainActivity.class);
+                final Intent mainIntetent = new Intent(LoginActivity.this, MenuActivity.class);
 
 
                 final String userId = idText.getText().toString();
                 final String userPasswd = passwordText.getText().toString();
 
-                Call<ResponseBody> m = LoginActivity.RetrofitServiceImplFactory.serverPost().sendName(userId, userPasswd);
+                Call<ResponseBody> m = MainActivity.RetrofitServiceImplFactory.serverPost().login(userId, userPasswd);
                 m.enqueue(new Callback<ResponseBody>() {
 
                     @Override
@@ -55,11 +55,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(response.isSuccessful()) {
                             Log.d(userId, "Login Success");
-                            Toast.makeText(getApplicationContext(), "서버에 값을 전달했습니다 : ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "로그인 성공 ", Toast.LENGTH_SHORT).show();
 
                             mainIntetent.putExtra("userId", userId);
-                            LoginActivity.this.startActivity(mainIntetent);
-                            setContentView(R.layout.activity_main);
+                            //setContentView(R.layout.activity_menu);
+                            startActivity(mainIntetent);
                         }
                     }
 
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mainIntetent = new Intent(LoginActivity.this, RegisterActivity.class);
-                LoginActivity.this.startActivity(mainIntetent);
+                startActivity(mainIntetent);
             }
         });
     }

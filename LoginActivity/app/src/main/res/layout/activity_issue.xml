@@ -31,6 +31,17 @@
         android:spinnerMode="dropdown" />
 
     <EditText
+        android:id="@+id/accountNumberText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="25dp"
+        android:ems="10"
+        android:hint="계좌번호"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/chargeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,9 +59,9 @@
         android:layout_height="545dp">
 
         <Button
-            android:id="@+id/btnCharge"
+            android:id="@+id/btnIssue"
             style="@style/Button01"
-            android:layout_width="394dp"
+            android:layout_width="327dp"
             android:layout_height="51dp"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/btnsave"

@@ -10,7 +10,7 @@
         <TextView
             android:id="@+id/tvSubTitle"
             style="@style/SubTitleText"
-            android:text="연결계좌조회\n- 사용자의 연결 계좌목록을 조회 및 삭제" />
+            android:text="연결계좌조회\n- 사용자의 연결 계좌목록을 조회" />
     </LinearLayout>
 
     <!--메인-->
@@ -33,13 +33,12 @@
                         <EditText
                             android:id="@+id/bankName"
                             style="@style/FormValue02"
-                            android:layout_width="20dp"
+                            android:layout_width="131dp"
                             android:inputType="text"
-                            android:maxLines="1"
-                            android:text="우리" />
+                            android:maxLines="1" />
 
                         <EditText
-                            android:id="@+id/accountNumber"
+                            android:id="@+id/accountNumberForList"
                             style="@style/FormValue02"
                             android:layout_width="300dp"
                             android:inputType="text"
